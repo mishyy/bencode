@@ -20,7 +20,7 @@ configure<JavaPluginExtension> {
     targetCompatibility = JavaVersion.VERSION_21
 
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion = JavaLanguageVersion.of(21)
     }
 
     withJavadocJar()
@@ -47,7 +47,7 @@ tasks {
     withType<JavaCompile> {
         options.encoding = StandardCharsets.UTF_8.name()
         options.isFork = true
-        options.release.set(21)
+        options.release = 21
 
         options.compilerArgs.addAll(listOf("-parameters", "-Xlint:all,-processing,-path,-fallthrough,-serial"))
     }
