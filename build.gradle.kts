@@ -5,6 +5,7 @@ plugins {
     `java-library`
     `jvm-test-suite`
     jacoco
+    `maven-publish`
 }
 
 group = "io.github.mishyy"
@@ -30,6 +31,14 @@ configure<TestingExtension> {
     suites {
         withType<JvmTestSuite> {
             useJUnitJupiter()
+        }
+    }
+}
+
+configure<PublishingExtension> {
+    publications {
+        register<MavenPublication>("mavenJava") {
+            from(components["java"])
         }
     }
 }
