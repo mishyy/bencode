@@ -5,7 +5,6 @@ plugins {
     `java-library`
     `jvm-test-suite`
     jacoco
-    `maven-publish`
 }
 
 group = "io.github.mishyy"
@@ -31,25 +30,6 @@ configure<TestingExtension> {
     suites {
         withType<JvmTestSuite> {
             useJUnitJupiter()
-        }
-    }
-}
-
-configure<PublishingExtension> {
-    publications {
-        register<MavenPublication>("gpr") {
-            from(components["java"])
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/mishyy/bencode")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR");
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN");
-            }
         }
     }
 }
